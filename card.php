@@ -4,7 +4,10 @@ ini_set('display_errors', 1);
 session_start();
 include 'connect.php';
 
-
+// Check if user is logged in and is an admin
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+    die('Access denied. Only admins can create cards.');
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +36,10 @@ include 'connect.php';
             </div>
             <button type="submit" class="btn btn-primary">Create Card</button>
         </form>
+        <div class="footer bg-dark p-4 mt-4 ">
+        <a href="admin/index.php" class="text-light text-decoration-none">Admin Panel</a>
+    </div>
+
     </div>
 </body>
 </html>

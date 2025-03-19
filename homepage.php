@@ -22,6 +22,66 @@ include("connect.php");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <!-- Google Fonts -->
+    <script>    
+    const topics = [
+        {
+            title: "Politics",
+            description: "Explore the latest political news and discussions.",
+            image: "home_image/home_politics.jpeg"
+        },
+        {
+            title: "Education",
+            description: "Discover educational resources and insights.",
+            image: "home_image/home_edu.jpeg"
+        },
+        {
+            title: "Sports",
+            description: "Stay updated with the latest sports events and news.",
+            image: "home_image/home_sports.jpeg"
+        },
+        {
+            title: "Films",
+            description: "Dive into the world of films and entertainment.",
+            image: "home_image/home_films.jpeg"
+        }
+    ];
+    let currentIndex = 0;
+    function updateHomeSection() {
+      const homeSection = document.querySelector(".home");
+      const homeDescription = document.getElementById("home-description");
+      const changeContent = document.querySelector(".changecontent");
+    try {
+        const topic = topics[currentIndex];
+        
+        if (!homeSection) {
+            throw new Error("homeSection element is not found.");
+        }
+        
+        if (!topic || !topic.image || !topic.description || !topic.title) {
+            throw new Error("Topic data is missing essential properties.");
+        }
+
+        homeSection.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url(${topic.image})`;
+        homeDescription.textContent = topic.description;
+
+        changeContent.textContent = topic.title;
+
+      // Remove the fade-in class to reset the animation
+      changeContent.classList.remove("changecontent");
+
+      // Force a reflow to reset the animation
+      void changeContent.offsetWidth; // Trigger reflow
+
+      // Re-add the fade-in class after a small delay to ensure the browser has reset
+    changeContent.classList.add("changecontent");
+        currentIndex = (currentIndex + 1) % topics.length;
+        console.log("Success");
+    } catch (error) {
+        console.error("Error updating home section:", error);
+    }
+}
+    
+</script>
 </head>
 <body>
     <!-- Navbar Start -->
@@ -67,7 +127,12 @@ include("connect.php");
         </div>
     </div>
     <!-- Home Section End -->
-
+    <script>
+      // Call updateHomeSection function every 5 seconds
+      setInterval(updateHomeSection, 3000);
+      // Call once immediately to load the first topic
+      updateHomeSection();
+    </script>
     <div class="container">
         <div class="main-txt">
           <h1><span>T</span>opics</h1>
@@ -82,11 +147,11 @@ include("connect.php");
             ?>
             <div class="col-md-4">
                 <div class="card mb-4">
-                    <img src="<?php echo $row['image']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
+                    <img src="<?php echo $row['image_path']; ?>" class="card-img-top" alt="<?php echo $row['name']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                        <h5 class="card-title"><?php echo $row['name']; ?></h5>
                         <p class="card-text"><?php echo $row['description']; ?></p>
-                        <a href="<?php echo $row['link']; ?>" class="btn btn-primary">Go to link</a>
+                        <a href="blog.php?topic=<?php echo urlencode($row['name']); ?>" class="btn btn-primary">Go to link</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +185,7 @@ include("connect.php");
 
         <!-- Footer Start -->
         <footer id="footer">
-            <h1><span>T</span>opics</h1>
+            <h1><span>T</span>Topics</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus fugiat, ipsa quos nulla qui alias.</p>
             <div class="social-links">
               <i class="fa-brands fa-twitter"></i>
@@ -137,7 +202,6 @@ include("connect.php");
             </div>
         </footer>
         <!-- Footer End -->
-
-        <script src="homepage.js"></script>
-    </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
 </html>

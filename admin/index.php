@@ -1,6 +1,11 @@
 <?php
 session_start();
 include("../connect.php");
+
+// Check if user is logged in and is an admin
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+    die('Access denied. Only admins can access this page.');
+}
 ?>
 
 <?php

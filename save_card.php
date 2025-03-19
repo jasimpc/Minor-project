@@ -4,6 +4,11 @@ ini_set('display_errors', 1);
 session_start();
 include("connect.php");
 
+// Check if user is logged in and is an admin
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+    die('Access denied. Only admins can create cards.');
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);

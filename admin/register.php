@@ -25,22 +25,26 @@ if (isset($_POST['signIn'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM login WHERE email='$email' AND password='$password'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
+    // Check if the user is an admin
+    if ($email === 'admin@123' && $password === 'pass') {
         session_start();
-        $row = $result->fetch_assoc();
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['role'] = ($email == "admin@123" && $password == "pass") ? 'admin' : 'user';
-        if ($_SESSION['role'] == 'admin') {
-            header("Location: ../admin/index.php");
-            exit();
-        } else {
+        $_SESSION['user_id'] = 1; // Assuming 1 is the admin user ID
+        $_SESSION['is_admin'] = true;
+        header("Location: ../admin/index.php");
+        exit();
+    } else {
+        $sql = "SELECT * FROM login WHERE email='$email' AND password='$password'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            session_start();
+            $row = $result->fetch_assoc();
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['is_admin'] = false;
             header("Location: ../homepage.php");
             exit();
+        } else {
+            echo "Not Found, Incorrect Email or Password";
         }
-    } else {
-        echo "Not Found, Incorrect Email or Password";
     }
 }
 ?>

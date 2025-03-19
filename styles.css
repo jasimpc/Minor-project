@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,23 +9,23 @@
 }
 
 /* Navbar Start */
-#navbar{
+#navbar {
     background: #f9f9f9;
 }
-#logo{
+#logo {
     font-size: 36px;
     font-weight: 550;
     color: black;
     text-shadow: 0px 1px 1px black;
     margin-bottom: 5px;
 }
-navbar-toggler span{
+.navbar-toggler span {
     color: #df2114;
 }
-.navbar-nav{
+.navbar-nav {
     margin-left: 20px;
 }
-.nav-item .nav-link{
+.nav-item .nav-link {
     font-size: 16px;
     font-weight: 550;
     color: black;
@@ -33,11 +33,11 @@ navbar-toggler span{
     border-radius: 3px;
     transition: 0.5s ease;
 }
-.nav-item .nav-link:hover{
+.nav-item .nav-link:hover {
     background: #df2114;
     color: white;
 }
-#navbar form button{
+#navbar form button {
     background: #df2114;
     color: white;
     border: none;
@@ -45,11 +45,14 @@ navbar-toggler span{
 /* Navbar End */
 
 /* Home Section Start */
-.home{
+.home {
+    position: relative;
     width: 100%;
-    height: 90vh;
+    height: 100vh; /* Full viewport height */
+    background-position: center; /* Default start position of background image */
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; /* Ensures the image covers the entire container */
+    transition: background-position 5s ease; /* Animates the background position */
 }
 
 .home .content {
@@ -76,7 +79,15 @@ navbar-toggler span{
     text-shadow: 0px 1px 1px black;
     animation: fadeIn 1s ease-in-out;
 }
-    .home .content p{
+/* 
+span.changecontent::after {
+    content: attr(data-content);
+    display: block;
+    overflow: hidden;
+    position: relative;
+} */
+
+.home .content p {
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -84,7 +95,7 @@ navbar-toggler span{
     margin-bottom: 30px;
     margin-top: 5px;
 }
-.home .content a{
+.home .content a {
     padding: 10px;
     background: white;
     color: black;
@@ -94,64 +105,64 @@ navbar-toggler span{
     text-decoration: none;
     transition: 0.5s;
 }
-.home .content a:hover{
+.home .content a:hover {
     background: #df2114;
     color: white;
 }
-@media (max-width:850px){
-    .home{
+@media (max-width:850px) {
+    .home {
         background-position: 50%;
     }
 }
-@media (max-width:450px){
-    .home .content h5{
+@media (max-width:450px) {
+    .home .content h5 {
         font-size: 25px;
     }
-    .home .content h1{
+    .home .content h1 {
         font-size: 38px;
     }
-    .home .content p{
+    .home .content p {
         font-size: 13px;
     }
 }
 /* Home Section End */
 
 /* Section Packages Start */
-.main-txt h1{
+.main-txt h1 {
     text-align: center;
     margin-top: 30px;
     font-weight: 600;
     text-shadow: 0px 1px 1px black;
 }
-.main-txt h1 span{
+.main-txt h1 span {
     color: #df2114;
 }
-.packages .card{
+.packages .card {
     border-radius: 5px;
     border: none;
     box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
 }
-.packages .card img{
+.packages .card img {
     border-radius: 5px;
 }
-.packages .card .card-body{
+.packages .card .card-body {
     background: transparent;
 }
-.packages .card .card-body h3{
+.packages .card .card-body h3 {
     font-size: 25px;
     font-weight: 600;
 }
-.packages .card .card-body p{
+.packages .card .card-body p {
     font-size: 15px;
 }
-.checked{
+.checked {
     color: #df2114;
 }
 
-.packages .card .card-body h6{
+.packages .card .card-body h6 {
     font-size: 20px;
 }
-.btn{
+.btn {
     padding: 10px 20px;
     text-decoration: none;
     background: #df2114;
@@ -162,31 +173,31 @@ navbar-toggler span{
     display: inline-block;
     text-align: center;
 }
-.btn:hover{
+.btn:hover {
     background-color: #df2114; 
 }
 /* Section Packages End */
 
 /* About Start */
-.about{
+.about {
     padding: 50px;
     margin-top: 50px;
     background: #f9f9f9;
 }
-.about .card{
+.about .card {
     border-radius: 10px;
 }
-.about .card img{
+.about .card img {
     border-radius: 10px;
 }
-.about h2{
+.about h2 {
     font-weight: 600;
     letter-spacing: 1px;
 }
-.about p{
+.about p {
     font-weight: 500;
 }
-#about-btn{
+#about-btn {
     width: 150px;
     height: 38px;
     border: none;
@@ -198,31 +209,31 @@ navbar-toggler span{
     transition: 0.5s ease;
     cursor: pointer;
 }
-#about-btn:hover{
+#about-btn:hover {
     width: 170px;
 }
-@media (max-width:765px){
-    .about{
+@media (max-width:765px) {
+    .about {
         padding: 0;
     }
 }
 /* About End */
 /* Footer Start */
-#footer{
+#footer {
     width: 100%;
     margin-top: 150px;
     text-align: center;
     background: #f9f9f9;
 }
-#footer h1{
+#footer h1 {
     font-weight: 600;
     padding-top: 30px;
     text-shadow: 0px 0px 1px black;
 }
-#footer h1 span{
+#footer h1 span {
     color: #df2114;
 }
-.social-links i{
+.social-links i {
     padding: 10px;
     border-radius: 5px;
     font-size: 20px;
@@ -233,7 +244,20 @@ navbar-toggler span{
     transition: 0.5s ease;
     cursor: pointer;
 }
-.social-links i:hover{
+.social-links i:hover {
     background: #df2114;
 }
 /* Footer End */
+/* Add these CSS rules */
+.fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
