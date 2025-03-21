@@ -1,7 +1,7 @@
 <?php
 $id = $_GET["id"];
 if($id){
-include("../connect.php");
+include("../sinan/connect.php");
 $sqlDelete = "DELETE FROM post WHERE id = $id";
 if(mysqli_query($conn, $sqlDelete)){
     session_start();

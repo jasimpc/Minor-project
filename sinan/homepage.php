@@ -22,66 +22,6 @@ include("connect.php");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <!-- Google Fonts -->
-    <script>    
-    const topics = [
-        {
-            title: "Politics",
-            description: "Explore the latest political news and discussions.",
-            image: "home_image/home_politics.jpeg"
-        },
-        {
-            title: "Education",
-            description: "Discover educational resources and insights.",
-            image: "home_image/home_edu.jpeg"
-        },
-        {
-            title: "Sports",
-            description: "Stay updated with the latest sports events and news.",
-            image: "home_image/home_sports.jpeg"
-        },
-        {
-            title: "Films",
-            description: "Dive into the world of films and entertainment.",
-            image: "home_image/home_films.jpeg"
-        }
-    ];
-    let currentIndex = 0;
-    function updateHomeSection() {
-      const homeSection = document.querySelector(".home");
-      const homeDescription = document.getElementById("home-description");
-      const changeContent = document.querySelector(".changecontent");
-    try {
-        const topic = topics[currentIndex];
-        
-        if (!homeSection) {
-            throw new Error("homeSection element is not found.");
-        }
-        
-        if (!topic || !topic.image || !topic.description || !topic.title) {
-            throw new Error("Topic data is missing essential properties.");
-        }
-
-        homeSection.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.2)), url(${topic.image})`;
-        homeDescription.textContent = topic.description;
-
-        changeContent.textContent = topic.title;
-
-      // Remove the fade-in class to reset the animation
-      changeContent.classList.remove("changecontent");
-
-      // Force a reflow to reset the animation
-      void changeContent.offsetWidth; // Trigger reflow
-
-      // Re-add the fade-in class after a small delay to ensure the browser has reset
-    changeContent.classList.add("changecontent");
-        currentIndex = (currentIndex + 1) % topics.length;
-        console.log("Success");
-    } catch (error) {
-        console.error("Error updating home section:", error);
-    }
-}
-    
-</script>
 </head>
 <body>
     <!-- Navbar Start -->
@@ -100,19 +40,16 @@ include("connect.php");
                 <a class="nav-link" href="#main-txt">Topics</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php">Sign Up</a>
+                <a class="nav-link" href="../admin/login.php">Sign Up</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="logout.php">Log Out</a>
+                <a class="nav-link" href="../admin/logout.php">Log Out</a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="text" placeholder="Search">
-              <button class="btn btn-primary" type="button">Search</button>
-            </form>
+         
           </div>
         </div>
       </nav>
@@ -127,6 +64,7 @@ include("connect.php");
         </div>
     </div>
     <!-- Home Section End -->
+    <script src="homepage.js"></script>
     <script>
       // Call updateHomeSection function every 5 seconds
       setInterval(updateHomeSection, 3000);
@@ -134,7 +72,7 @@ include("connect.php");
       updateHomeSection();
     </script>
     <div class="container">
-        <div class="main-txt">
+        <div class="main-txt" id="main-txt">
           <h1><span>T</span>opics</h1>
         </div>
 
@@ -145,13 +83,13 @@ include("connect.php");
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
             ?>
-            <div class="col-md-4">
+            <div class="col-md-4 pt-3">
                 <div class="card mb-4">
                     <img src="<?php echo $row['image_path']; ?>" class="card-img-top" alt="<?php echo $row['name']; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row['name']; ?></h5>
                         <p class="card-text"><?php echo $row['description']; ?></p>
-                        <a href="blog.php?topic=<?php echo urlencode($row['name']); ?>" class="btn btn-primary">Go to link</a>
+                        <a href="topic.php?topic_id=<?php echo $row['id']; ?>" class="btn btn-primary">Go to link</a>
                     </div>
                 </div>
             </div>
@@ -170,13 +108,13 @@ include("connect.php");
               <div class="row" style="margin-top: 50px;">
                 <div class="col-md-6 py-3 py-md-0">
                   <div class="card">
-                    <img src="./images/about-img.png" alt="">
+                    <img src="home_image/about.jpeg" alt="">
                   </div>
                 </div>
                 <div class="col-md-6 py-3 py-md-0">
                   <h2>How Debate Section Work</h2>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident perferendis dolorem, numquam earum at nam beatae voluptate natus consectetur facere, saepe cupiditate ut exercitationem deserunt, facilis quam perspiciatis autem iure illo harum minima. Quas, vitae aperiam laudantium alias asperiores nulla rerum, nihil eveniet perferendis sint illum accusamus officiis aliquam nam.</p>
-                  <button id="about-btn">Read More...</button>
+                  
                 </div>
               </div>
             </div>
@@ -185,17 +123,17 @@ include("connect.php");
 
         <!-- Footer Start -->
         <footer id="footer">
-            <h1><span>T</span>Topics</h1>
+            <h1><span>T</span>opics</h1>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus fugiat, ipsa quos nulla qui alias.</p>
             <div class="social-links">
-              <i class="fa-brands fa-twitter"></i>
-              <i class="fa-brands fa-facebook"></i>
-              <i class="fa-brands fa-instagram"></i>
-              <i class="fa-brands fa-youtube"></i>
-              <i class="fa-brands fa-pinterest-p"></i>
+             <a href="https://x.com"> <i class="fa-brands fa-twitter"></i></a>
+              <a href="https://www.facebook.com"> <i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com"> <i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.youtube.com"> <i class="fa-brands fa-youtube"></i></a>
+              <a href="https://www.pinterest.com"> <i class="fa-brands fa-pinterest-p"></i></a>
             </div>
             <div class="credit">
-              <p>Designed By <a href="#"> Jasim</a></p>
+              <p>Designed By <a href="#"> </a></p>
             </div>
             <div class="copyright">
               <p>&copy;Copyright . All Rights Reserved</p>

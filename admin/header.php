@@ -2,8 +2,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if(!isset($_SESSION['email'])) {
-    header('location:../login.php');
+if (!isset($_SESSION['email']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
+    header('location:login.php');
     exit();
 }
 ?>
@@ -29,10 +29,10 @@ if(!isset($_SESSION['email'])) {
                     <a href="/cms-php-mysql-main/admin/create.php" class="text-light text-decoration-none"><strong>ADD NEW POST</strong></a>
                 </div>
                 <div class="menu mt-5">
-                    <a href="/cms-php-mysql-main/homepage.php" class="text-light text-decoration-none"><strong>VIEW WEBSITE</strong></a>
+                    <a href="/cms-php-mysql-main/sinan/homepage.php" class="text-light text-decoration-none"><strong>VIEW WEBSITE</strong></a>
                 </div>
                 <div class="menu mt-5">
-                    <a href="/cms-php-mysql-main/card.php" class="text-light text-decoration-none"><strong>CARD CREATE</strong></a>
+                    <a href="/cms-php-mysql-main/sinan/card.php" class="text-light text-decoration-none"><strong>CARD CREATE</strong></a>
                 </div>
                 <div class="menu mt-4">
                     <a href="/cms-php-mysql-main/admin/logout.php" class="btn btn-info">Logout</a>

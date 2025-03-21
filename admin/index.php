@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../connect.php");
+include("../sinan/connect.php");
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
@@ -31,6 +31,7 @@ include("header.php");
     </div>
     <?php unset($_SESSION["delete"]); endif; ?>
 
+    <h2 style="padding-left:25px">Posts</h2>
     <table class="table table-bordered" style="width:90%; margin-left:250px;">
         <thead>
             <tr>
@@ -54,6 +55,38 @@ include("header.php");
                     <a class="btn btn-info" href="view.php?id=<?php echo $data["id"]?>">View</a>
                     <a class="btn btn-warning" href="edit.php?id=<?php echo $data["id"]?>">Edit</a>
                     <a class="btn btn-danger" href="delete.php?id=<?php echo $data["id"]?>">Delete</a>
+                </td>
+            </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
+
+    <h2 style="padding-left:25px">Cards</h2>
+    <table class="table table-bordered" style="width:90%; margin-left:250px;">
+        <thead>
+            <tr>
+                <th style="width:15%;">Created At</th>
+                <th style="width:15%;">Name</th>
+                <th style="width:45%;">Description</th>
+                <th style="width:25%;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $sqlSelectCards = "SELECT * FROM cards";
+            $resultCards = mysqli_query($conn, $sqlSelectCards);
+            while($card = mysqli_fetch_array($resultCards)){
+            ?>
+            <tr>
+                <td><?php echo $card["created_at"]?></td>
+                <td><?php echo $card["name"]?></td>
+                <td><?php echo $card["description"]?></td>
+                <td>
+                    <a class="btn btn-info" href="../sinan/topic.php?topic_id=<?php echo $card["id"]?>">View</a>
+                    <a class="btn btn-warning" href="edit_card.php?id=<?php echo $card["id"]?>">Edit</a>
+                    <a class="btn btn-danger" href="delete_card.php?id=<?php echo $card["id"]?>">Delete</a>
                 </td>
             </tr>
             <?php

@@ -17,7 +17,7 @@ const topics = [
     {
         title: "Films",
         description: "Dive into the world of films and entertainment.",
-        image: "home_image/home_file.jpeg"
+        image: "home_image/home_films.jpg"
     }
 ];
 
@@ -32,5 +32,10 @@ function updateHomeSection() {
     homeDescription.textContent = topic.description;
     changeContent.textContent = topic.title;
     currentIndex = (currentIndex + 1) % topics.length;
-    console.log("Success")
+    console.log(`Updated to: ${topic.title}, Image: ${topic.image}`);
 }
+
+// Call updateHomeSection function every 5 seconds
+setInterval(updateHomeSection, 5000);
+// Call once immediately to load the first topic
+updateHomeSection();

@@ -37,7 +37,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION[
             <button type="submit" class="btn btn-primary">Create Card</button>
         </form>
         <div class="footer bg-dark p-4 mt-4 ">
-        <a href="admin/index.php" class="text-light text-decoration-none">Admin Panel</a>
+        <a href="../admin/index.php" class="text-light text-decoration-none">Admin Panel</a>
     </div>
 
     </div>

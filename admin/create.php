@@ -17,7 +17,19 @@ include("header.php");
             <input type="file" class="form-control" name="image" id="">
         </div>
         <input type="hidden" name="date" value="<?php echo date("Y/m/d"); ?>">
-
+        <div class="form-group mb-4">
+            <label for="topic_id">Topic</label>
+            <select name="topic_id" id="topic_id" class="form-control">
+                <?php
+                include("../sinan/connect.php");
+                $sqlTopics = "SELECT * FROM cards";
+                $resultTopics = mysqli_query($conn, $sqlTopics);
+                while ($topic = mysqli_fetch_assoc($resultTopics)) {
+                    echo '<option value="' . $topic['id'] . '">' . $topic['name'] . '</option>';
+                }
+                ?>
+            </select>
+        </div>
         <div class="form-field">
             <input type="submit" class="btn btn-primary" value="Submit" name="create">
         </div>

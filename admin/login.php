@@ -1,4 +1,5 @@
 <?php
+session_start(); // Ensure session is started
 if(isset($_POST['signIn'])){
   $username = $_POST['email'];
   $password = $_POST['password'];
@@ -39,13 +40,7 @@ if(isset($_POST['signIn'])){
         </div>
        <input type="submit" class="btn" value="Sign Up" name="signUp">
       </form>
-      <p class="or">
-        ----------or--------
-      </p>
-      <div class="icons">
-        <i class="fab fa-google"></i>
-        <i class="fab fa-facebook"></i>
-      </div>
+      
       <div class="links">
         <p>Already Have Account ?</p>
         <button id="signInButton">Sign In</button>
@@ -65,23 +60,11 @@ if(isset($_POST['signIn'])){
               <input type="password" name="password" id="password" placeholder="Password" required>
               <label for="password">Password</label>
           </div>
-          <p class="recover">
-            <a href="#">Recover Password</a>
-          </p>
-         <input type="submit" class="btn" value="Sign In" name="signIn">
+          <input type="submit" class="btn" value="Sign In" name="signIn">
         </form>
-        <p class="or">
-          ----------or--------
-        </p>
-        <div class="icons">
-          <i class="fab fa-google"></i>
-          <i class="fab fa-facebook"></i>
-        </div>
         <div class="links">
           <p>Don't have account yet?</p>
           <button id="signUpButton">Sign Up</button>
         </div>
       </div>
       <script src="script.js"></script>
-</body>
-</html>

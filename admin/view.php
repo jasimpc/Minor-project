@@ -5,7 +5,7 @@ include("header.php");
     <?php
     $id = $_GET["id"];
     if ($id) {
-        include("../connect.php");
+        include("../sinan/connect.php");
         $sqlSelectPost = "SELECT * FROM post WHERE id = $id";
         $result = mysqli_query($conn, $sqlSelectPost);
         while ($data = mysqli_fetch_array($result)) {
