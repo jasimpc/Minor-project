@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete_comment_id'])) 
         <div class="post-container">
             <h1><?php echo htmlspecialchars($post['title']); ?></h1>
             <?php if (!empty($post['image'])) { ?>
-                <img src="../uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Post Image" class="post-image">
+                <img src="uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Post Image" class="post-image">
             <?php } ?>
             <p><?php echo htmlspecialchars($post['content']); ?></p>
             <div class="post-time">

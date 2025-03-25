@@ -73,7 +73,7 @@ if (!isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
                 <a href="create.php">Posts</a>
             </div>
             <div class="menu mt-4">
-                <a href="../sinan/card.php">Cards</a>
+                <a href="card.php">Topics</a>
             </div>
             <div class="menu mt-4">
                 <a href="../sinan/logout.php" class="btn btn-info">Logout</a>

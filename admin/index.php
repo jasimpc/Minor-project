@@ -8,13 +8,13 @@ include("../sinan/connect.php");
 <div class="container-fluid p-5">
     <h1 class="text-center mb-5">Admin Panel</h1>
 
-    <!-- Tabs for Posts and Cards -->
+    <!-- Tabs for Posts and Topics -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Posts</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="cards-tab" data-bs-toggle="tab" data-bs-target="#cards" type="button" role="tab" aria-controls="cards" aria-selected="false">Cards</button>
+            <button class="nav-link" id="cards-tab" data-bs-toggle="tab" data-bs-target="#cards" type="button" role="tab" aria-controls="cards" aria-selected="false">Topics</button>
         </li>
     </ul>
 
@@ -49,9 +49,9 @@ include("../sinan/connect.php");
             </div>
         </div>
 
-        <!-- Cards Tab -->
+        <!-- Topic Tab -->
         <div class="tab-pane fade" id="cards" role="tabpanel" aria-labelledby="cards-tab">
-            <h2 class="mt-5">Cards</h2>
+            <h2 class="mt-5">Topics</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <?php
                 $sqlSelectCards = "SELECT * FROM categories";

@@ -22,7 +22,7 @@ if (isset($_POST["create"])) {
     $image = isset($_FILES["image"]["name"]) ? $_FILES["image"]["name"] : null;
     if ($image) {
         echo "File uploaded: $image<br>"; // Debugging
-        $target_dir = "../uploads/";
+        $target_dir = "../sinan/uploads/";
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
@@ -83,7 +83,7 @@ if (isset($_POST["update"])) {
     $image = isset($_FILES["image"]["name"]) ? $_FILES["image"]["name"] : null;
     if ($image) {
         echo "File uploaded: $image<br>"; // Debugging
-        $target_dir = "../uploads/";
+        $target_dir = "../sinan/uploads/";
         if (!is_dir($target_dir)) {
             mkdir($target_dir, 0777, true);
         }

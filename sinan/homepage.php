@@ -89,7 +89,7 @@ include("connect.php");
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $row['name']; ?></h5>
                         <p class="card-text"><?php echo $row['description']; ?></p>
-                        <a href="topic.php?topic_id=<?php echo $row['id']; ?>" class="btn btn-primary">Go to link</a>
+                        <a href="topic.php?topic_id=<?php echo $row['id']; ?>" class="btn btn-primary">Go </a>
                     </div>
                 </div>
             </div>

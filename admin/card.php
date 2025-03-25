@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-include 'connect.php';
+include '../sinan/connect.php';
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
@@ -37,7 +37,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION[
             <button type="submit" class="btn btn-primary">Create Card</button>
         </form>
         <div class="footer bg-dark p-4 mt-4 ">
-        <a href="../admin/index.php" class="text-light text-decoration-none">Admin Panel</a>
+        <a href="index.php" class="text-light text-decoration-none">Admin Panel</a>
     </div>
 
     </div>

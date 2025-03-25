@@ -60,7 +60,7 @@ $result = mysqli_query($conn, $sql);
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <?php if ($data["image"]) { ?>
-                            <img src="../uploads/<?php echo $data["image"]; ?>" class="card-img-top" alt="<?php echo $data["title"]; ?>">
+                            <img src="../admin/uploads/<?php echo $data["image"]; ?>" class="card-img-top" alt="<?php echo $data["title"]; ?>">
                         <?php } ?>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $data["title"]; ?></h5>
