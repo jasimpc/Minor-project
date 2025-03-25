@@ -1,104 +1,85 @@
 <?php
 session_start();
 include("../sinan/connect.php");
-
-// Check if user is logged in and is an admin
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['is_admin']) || !$_SESSION['is_admin']) {
-    die('Access denied. Only admins can access this page.');
-}
 ?>
 
-<?php
-include("header.php");
-?>
+<?php include("header.php"); ?>
 
-<div class="posts-list w-100 p-5">
-    <?php if (isset($_SESSION["create"])): ?>
-    <div class="alert alert-success alert-lightbox" id="createAlert">
-        <?php echo $_SESSION["create"]; ?>
+<div class="container-fluid p-5">
+    <h1 class="text-center mb-5">Admin Panel</h1>
+
+    <!-- Tabs for Posts and Cards -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">Posts</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="cards-tab" data-bs-toggle="tab" data-bs-target="#cards" type="button" role="tab" aria-controls="cards" aria-selected="false">Cards</button>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="myTabContent">
+        <!-- Posts Tab -->
+        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+            <h2 class="mt-5">Posts</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <?php
+                $sqlSelect = "SELECT * FROM posts";
+                $result = mysqli_query($conn, $sqlSelect);
+                while ($data = mysqli_fetch_array($result)) {
+                ?>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $data["title"]; ?></h5>
+                                <p class="card-text"><?php echo $data["summary"]; ?></p>
+                                <p class="card-text"><small class="text-muted"><?php echo $data["date"]; ?></small></p>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a class="btn btn-info btn-sm" href="view.php?id=<?php echo $data["id"]; ?>">View</a>
+                                <a class="btn btn-warning btn-sm" href="edit.php?id=<?php echo $data["id"]; ?>">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $data["id"]; ?>">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
+
+        <!-- Cards Tab -->
+        <div class="tab-pane fade" id="cards" role="tabpanel" aria-labelledby="cards-tab">
+            <h2 class="mt-5">Cards</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <?php
+                $sqlSelectCards = "SELECT * FROM categories";
+                $resultCards = mysqli_query($conn, $sqlSelectCards);
+                while ($card = mysqli_fetch_array($resultCards)) {
+                ?>
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $card["name"]; ?></h5>
+                                <p class="card-text"><?php echo $card["description"]; ?></p>
+                                <p class="card-text"><small class="text-muted"><?php echo $card["created_at"]; ?></small></p>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0">
+                                <a class="btn btn-info btn-sm" href="edit_card.php?id=<?php echo $card["id"]; ?>">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="delete_card.php?id=<?php echo $card["id"]; ?>">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </div>
     </div>
-    <?php unset($_SESSION["create"]); endif; ?>
-
-    <?php if (isset($_SESSION["update"])): ?>
-    <div class="alert alert-success alert-lightbox" id="updateAlert">
-        <?php echo $_SESSION["update"]; ?>
-    </div>
-    <?php unset($_SESSION["update"]); endif; ?>
-
-    <?php if (isset($_SESSION["delete"])): ?>
-    <div class="alert alert-success alert-lightbox" id="deleteAlert">
-        <?php echo $_SESSION["delete"]; ?>
-    </div>
-    <?php unset($_SESSION["delete"]); endif; ?>
-
-    <h2 style="padding-left:25px">Posts</h2>
-    <table class="table table-bordered" style="width:90%; margin-left:250px;">
-        <thead>
-            <tr>
-                <th style="width:15%;">Publication Date</th>
-                <th style="width:15%;">Title</th>
-                <th style="width:45%;">Article</th>
-                <th style="width:25%;">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $sqlSelect = "SELECT * FROM post";
-            $result = mysqli_query($conn, $sqlSelect);
-            while($data = mysqli_fetch_array($result)){
-            ?>
-            <tr>
-                <td><?php echo $data["date"]?></td>
-                <td><?php echo $data["title"]?></td>
-                <td><?php echo $data["summary"]?></td>
-                <td>
-                    <a class="btn btn-info" href="view.php?id=<?php echo $data["id"]?>">View</a>
-                    <a class="btn btn-warning" href="edit.php?id=<?php echo $data["id"]?>">Edit</a>
-                    <a class="btn btn-danger" href="delete.php?id=<?php echo $data["id"]?>">Delete</a>
-                </td>
-            </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
-
-    <h2 style="padding-left:25px">Cards</h2>
-    <table class="table table-bordered" style="width:90%; margin-left:250px;">
-        <thead>
-            <tr>
-                <th style="width:15%;">Created At</th>
-                <th style="width:15%;">Name</th>
-                <th style="width:45%;">Description</th>
-                <th style="width:25%;">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $sqlSelectCards = "SELECT * FROM cards";
-            $resultCards = mysqli_query($conn, $sqlSelectCards);
-            while($card = mysqli_fetch_array($resultCards)){
-            ?>
-            <tr>
-                <td><?php echo $card["created_at"]?></td>
-                <td><?php echo $card["name"]?></td>
-                <td><?php echo $card["description"]?></td>
-                <td>
-                    <a class="btn btn-info" href="../sinan/topic.php?topic_id=<?php echo $card["id"]?>">View</a>
-                    <a class="btn btn-warning" href="edit_card.php?id=<?php echo $card["id"]?>">Edit</a>
-                    <a class="btn btn-danger" href="delete_card.php?id=<?php echo $card["id"]?>">Delete</a>
-                </td>
-            </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
 </div>
 
-<?php
-include("footer.php");
-?>
+<?php include("footer.php"); ?>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

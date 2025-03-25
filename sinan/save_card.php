@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (in_array($imageFileType, $allowed_types)) {
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
                 // Insert the new card into the database with the image path
-                $stmt = $conn->prepare("INSERT INTO cards (name, description, created_by, image_path) VALUES (?, ?, ?, ?)");
+                $stmt = $conn->prepare("INSERT INTO categories (name, description, created_by, image_path) VALUES (?, ?, ?, ?)");
                 if ($stmt === false) {
                     die('Prepare failed: ' . htmlspecialchars($conn->error));
                 }

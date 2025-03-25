@@ -40,13 +40,13 @@ include("connect.php");
                 <a class="nav-link" href="#main-txt">Topics</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../admin/login.php">Sign Up</a>
+                <a class="nav-link" href="login.php">Sign Up</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#about">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../admin/logout.php">Log Out</a>
+                <a class="nav-link" href="logout.php">Log Out</a>
               </li>
             </ul>
          
@@ -79,7 +79,7 @@ include("connect.php");
         <!-- Topics Section Start -->
         <div class="row">
             <?php
-            $sql = "SELECT * FROM cards";
+            $sql = "SELECT * FROM categories";
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_assoc($result)) {
             ?>

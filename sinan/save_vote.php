@@ -1,10 +1,11 @@
+// save_vote.php
 <?php
 include("connect.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $post_id = mysqli_real_escape_string($conn, $_POST['post_id']);
-    $vote = intval($_POST['vote']); // Ensure vote is an integer
-    $user_id = 1; // Replace with actual user ID from session or other source
+    $vote = intval($_POST['vote']); // 1 for like, -1 for dislike
+    $user_id = $_SESSION['user_id']; // Assuming user_id is stored in session
 
     // Check if the user has already voted on this post
     $sqlCheckVote = "SELECT * FROM votes WHERE post_id = '$post_id' AND user_id = '$user_id'";

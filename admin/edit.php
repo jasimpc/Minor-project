@@ -6,7 +6,7 @@ include "header.php";
 $id = $_GET['id'];
 if($id){
     include("../sinan/connect.php");
-    $sqlEdit = "SELECT * FROM post WHERE id = $id";
+    $sqlEdit = "SELECT * FROM posts WHERE id = $id";
     $result = mysqli_query($conn, $sqlEdit);
 }else{
     echo "No post found";
@@ -26,7 +26,7 @@ if($id){
                     <textarea name="summary"  class="form-control" id="" cols="30" rows="10" placeholder="Enter Summary:"><?php echo $data['summary']; ?></textarea>
                 </div>
                 <div class="form-field mb-4">
-                    <textarea name="context" class="form-control" id="" cols="30" rows="10" placeholder="Enter Post:"><?php echo $data['content']; ?></textarea>
+                    <textarea name="content" class="form-control" id="" cols="30" rows="10" placeholder="Enter Post:"><?php echo $data['content']; ?></textarea>
                 </div>
                 <input type="hidden" name="date" value="<?php echo date("Y/m/d"); ?>">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">

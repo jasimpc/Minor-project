@@ -2,7 +2,7 @@
 $id = $_GET["id"];
 if($id){
     include("../sinan/connect.php");
-    $sqlDelete = "DELETE FROM cards WHERE id = $id";
+    $sqlDelete = "DELETE FROM categories WHERE id = $id";
     if(mysqli_query($conn, $sqlDelete)){
         session_start();
         $_SESSION["delete"] = "Card deleted successfully";

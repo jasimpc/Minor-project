@@ -1,5 +1,5 @@
-create database cms;
-use cms;
+create database login;
+use login;
 CREATE TABLE logins (
     id INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(255) NOT NULL,
@@ -38,4 +38,14 @@ CREATE TABLE comment_votes (
     vote INT NOT NULL,
     FOREIGN KEY (comment_id) REFERENCES comments(id),
     FOREIGN KEY (user_id) REFERENCES logins(id)
+);
+
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(250) NOT NULL,
+    description LONGTEXT,
+    created_by INT NOT NULL,
+    image_path VARCHAR(250),
+    created_at TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES logins(id)
 );

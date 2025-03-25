@@ -22,7 +22,7 @@ include("header.php");
             <select name="topic_id" id="topic_id" class="form-control">
                 <?php
                 include("../sinan/connect.php");
-                $sqlTopics = "SELECT * FROM cards";
+                $sqlTopics = "SELECT * FROM categories";
                 $resultTopics = mysqli_query($conn, $sqlTopics);
                 while ($topic = mysqli_fetch_assoc($resultTopics)) {
                     echo '<option value="' . $topic['id'] . '">' . $topic['name'] . '</option>';
